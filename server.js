@@ -37,7 +37,15 @@ io.on('connection', socket => {
 
   // Handle when a user disconnected
   socket.on('disconnect', () => {
-    
+    switch(findArrayThatIdBelogns(socket.id)){
+      case "monitor" :
+
+      case "locator" :
+
+      default:
+
+      break
+    }
   });
 
 });
@@ -55,10 +63,42 @@ function printActiveClients(){
   }); 
 }
 
-function userIsOnArray(array, id){
+function deleteFromMonitor(id){
+  let user = getUserFromMonitorById(id);
+  monitors_connected.splice( monitors_connected.indexOf(user), 1);
+}
+
+function deleteFromLocator(user){
+  locators_connected.splice( locators_connected.indexOf(user), 1);
+}
+
+function findArrayThatIdBelogns(id){
   let response;
-  array.filter(user => {
-    response = user.id === id ? true: false;
-    return response;
+  monitors_connected.filter( element => {
+    if(element.id === id){
+      response = "monitor";
+    }else{
+      response = "locator";
+    }
   });
+
+  return response;
+}
+
+function getUserFromMonitorById(id){
+  let response = null;
+  monitors_connected.filter(element => {
+    if(element.id === id) response = element;
+  });
+
+  return response;
+}
+
+function getUserFromLocatorById(id){
+  let response = null;
+  locators_connected.filter(element => {
+    if(element.id === id) response = element;
+  });
+
+  return response;
 }
