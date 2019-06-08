@@ -50,21 +50,7 @@ io.on('connection', socket => {
   // Handle when a user disconnected
   socket.on('disconnect', () => {
     // This looks if a user that's disconneting is a monitor or a locator then removes it from the proper array
-    switch(findArrayThatIdBelogns(socket.id)){
-      case "monitor" :
-        deleteFromMonitor(socket.id);
-        console.log("Monitor " + socket.id + " has been removed");
-        break;
-      case "locator" :
-        deleteFromLocator(socket.id);
-        console.log("Locator " + socket.id + " has been removed");
-        break;
-      default:
-
-      break
-    }
-  });
-
+    
 });
 
 
