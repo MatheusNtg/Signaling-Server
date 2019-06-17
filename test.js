@@ -1,5 +1,12 @@
-var users = new Map();
-users.set(0,null);
-console.dir(users);
-users.set(0, "a");
-console.dir(users);
+var map1 = new Map();
+
+map1.set('0', 'foo');
+map1.set(1, 'bar');
+
+var iterator1 = map1.keys();
+
+console.log(iterator1.next(0).value);
+// expected output: "0"
+
+console.log(iterator1.next(0).value);
+// expected output: 1
